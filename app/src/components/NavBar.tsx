@@ -1,6 +1,7 @@
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function NavBar() {
+  const navigate = useNavigate()
   return (
     <nav
       style={{
@@ -19,6 +20,19 @@ export function NavBar() {
         }}>
         My Chat App
       </Link>
-    </nav>
+      <button type="submit" onClick={async () => {
+        await fetch("/api/logout", {method: "POST"})
+        navigate("/login")
+      }}
+        style={{ 
+          marginLeft: '1rem',
+          cursor: 'pointer',
+          color: '#fff',
+          border: 'none',
+          fontWeight: 'bold',
+          background: 'none',
+        }}
+        >logout</button>
+    </nav >
   );
 }

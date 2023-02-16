@@ -9,6 +9,8 @@ import {postLogin} from "./routes/postLogin";
 import {authenticationMiddleware} from "./middlewares/authenticationMiddleware";
 import {getRegister} from "./routes/getRegister";
 import {postRegister} from "./routes/postRegister";
+import { getPosts } from "./routes/getPosts";
+import { postLogout } from "./routes/postLogout";
 
 const SECRET_KEY = 'MySecretKeyIsAwesome'
 
@@ -32,6 +34,8 @@ function main() {
   app.use(authenticationMiddleware)
   getRoot(app)
   getWs(app, sockets)
+  getPosts(app)
+  postLogout(app)
 
   app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(error)

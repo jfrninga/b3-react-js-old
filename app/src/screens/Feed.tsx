@@ -1,14 +1,23 @@
-import {Title} from "../components/Title";
-import {NavBar} from "../components/NavBar";
-import {ChatWrapper} from "../components/Chat/ChatWrapper";
-import {ChatMessage} from "../components/Chat/ChatMessage";
+import { Title } from "../components/Title";
+import { NavBar } from "../components/NavBar";
+import { ChatWrapper } from "../components/Chat/ChatWrapper";
+import { ChatMessage } from "../components/Chat/ChatMessage";
+import { useLoaderData } from "react-router-dom";
 
 export function Feed() {
+  const data = useLoaderData() as { id: number, title: string }[]
+  console.log(data)
+
   return (
     <>
-      <NavBar/>
       <Title>Feed</Title>
-      <i id="chat-status"/>
+
+      {data.map(post => (
+        <div key={post.id}>{post.title}</div>
+      ))}
+
+
+      <i id="chat-status" />
       <ChatWrapper>
         <ChatMessage
           author="Bibi"

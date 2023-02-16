@@ -4,14 +4,14 @@ import {findUserByEmail} from "../repositories/userRepository";
 
 export function postLogin(app: Application) {
   app.post(
-    '/login',
-    bodyParser.urlencoded(),
+    '/api/login',
+    bodyParser.json(),
     async (req, res) => {
       try {
         const email = req.body.email;
         const user = await findUserByEmail(email)
         if (!user) {
-          res.status(401).send('Invalid email');
+          res.status(401).send({message: 'Invalid email'});
           return;
         }
         res.cookie(
@@ -19,10 +19,10 @@ export function postLogin(app: Application) {
           user.id,
           {signed: true, httpOnly: true, sameSite: true}
         );
-        res.redirect('/')
+        res.send({ success: true})
       } catch (e) {
         console.error(e)
-        res.status(500).send('Internal Server Error')
+        res.status(500).send({message: 'Internal Server Error'})
       }
     }
   )

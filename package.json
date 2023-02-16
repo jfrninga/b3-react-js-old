@@ -5,8 +5,8 @@
   "main": "src/server.ts",
   "repository": "https://github.com/D34THWINGS/b3-nodejs",
   "scripts": {
-    "start": "NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader ts-node/esm\" node --inspect --watch src/server.ts",
-    "start:windows": "ts-node --esm --experimental-specifier-resolution=node src/server.ts",
+    "start": "ts-node --esm --experimental-specifier-resolution=node src/server.ts",
+    "start:mac": "NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader ts-node/esm\" node --inspect --watch src/server.ts",
     "test": "jest"
   },
   "author": "",
